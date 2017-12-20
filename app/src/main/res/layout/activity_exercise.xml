@@ -12,13 +12,12 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="TODO"
         android:onClick="onImage0"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/body_arm" />
+        app:srcCompat="@drawable/arm" />
 
     <ImageView
         android:id="@+id/image1"
@@ -26,27 +25,25 @@
         android:layout_height="72dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="TODO"
         android:onClick="onImage1"
         app:layout_constraintBottom_toTopOf="@+id/image2"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image0"
-        app:srcCompat="@drawable/body_finger" />
+        app:srcCompat="@drawable/finger" />
 
     <ImageView
         android:id="@+id/image2"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginTop="216dp"
-        android:contentDescription="TODO"
         android:onClick="onImage2"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/body_foot" />
+        app:srcCompat="@drawable/foot" />
 
     <ImageView
         android:id="@+id/image3"
@@ -54,14 +51,13 @@
         android:layout_height="71dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="TODO"
         android:onClick="onImage3"
         app:layout_constraintBottom_toTopOf="@+id/image4"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image2"
-        app:srcCompat="@drawable/body_hand" />
+        app:srcCompat="@drawable/hand" />
 
     <ImageView
         android:id="@+id/image4"
@@ -69,14 +65,13 @@
         android:layout_height="72dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="420dp"
-        android:contentDescription="TODO"
         android:onClick="onImage4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/body_head" />
+        app:srcCompat="@drawable/head" />
 
 
     <ImageView
@@ -84,7 +79,6 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_marginRight="80dp"
-        android:contentDescription="TODO"
         android:onClick="onStartClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
