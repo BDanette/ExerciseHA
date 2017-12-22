@@ -22,18 +22,21 @@ public class ExerciseActivity extends AppCompatActivity {
     private ImageView img2;
     private ImageView img3;
     private ImageView img4;
+    private ImageView img5;
     private ImageView imgCentre;
 
 
     public int listIter = 0;
-    public ArrayList<vocaWord> insectsList;
+    public ArrayList<vocaWord> vocaList;
     {
-        insectsList = new ArrayList<vocaWord>() {{
-            add(new vocaWord("leg", img0, R.raw.audio_leg));
-            add(new vocaWord("neck", img1, R.raw.audio_neck));
-            add(new vocaWord("shoulder", img2, R.raw.audio_shoulders));
-            add(new vocaWord("stomach", img3, R.raw.audio_stomach));
-            add(new vocaWord("toes", img4, R.raw.audio_toes));
+        vocaList = new ArrayList<vocaWord>() {{
+            add(new vocaWord("leg", R.drawable.leg, R.raw.audio_leg));
+            add(new vocaWord("neck", R.drawable.neck, R.raw.audio_neck));
+            add(new vocaWord("shoulder", R.drawable.shoulders, R.raw.audio_shoulders));
+            add(new vocaWord("stomach", R.drawable.stomach, R.raw.audio_stomach));
+            add(new vocaWord("toes", R.drawable.toes, R.raw.audio_toes));
+            add(new vocaWord("elbow", R.drawable.elbow, R.raw.audio_elbow));
+
         }};
     }
 
@@ -45,58 +48,59 @@ public class ExerciseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exercise);
 
         img0 = findViewById(R.id.image0);
-        insectsList.get(0).setImage(img0);
-
         img1 = findViewById(R.id.image1);
-        insectsList.get(1).setImage(img1);
-
         img2 = findViewById(R.id.image2);
-        insectsList.get(2).setImage(img2);
-
         img3 = findViewById(R.id.image3);
-        insectsList.get(3).setImage(img3);
-
         img4 = findViewById(R.id.image4);
-        insectsList.get(4).setImage(img4);
-
+        img5 = findViewById(R.id.image5);
         imgCentre = findViewById(R.id.imageCentre);
     }
 
 
 
     public void onImage0(View view) {
-        imgCentre.setImageDrawable(insectsList.get(0).getImage().getDrawable());
+        imgCentre.setImageResource(vocaList.get(0).getImageID());
         listIter = 0;
     }
 
     public void onImage1(View view) {
-        imgCentre.setImageDrawable(insectsList.get(1).getImage().getDrawable());
+        imgCentre.setImageResource(vocaList.get(1).getImageID());
         listIter = 1;
     }
 
     public void onImage2(View view) {
-        imgCentre.setImageDrawable(insectsList.get(2).getImage().getDrawable());
+        imgCentre.setImageResource(vocaList.get(2).getImageID());
         listIter = 2;
     }
 
     public void onImage3(View view) {
-        imgCentre.setImageDrawable(insectsList.get(3).getImage().getDrawable());
+        imgCentre.setImageResource(vocaList.get(3).getImageID());
         listIter = 3;
     }
 
     public void onImage4(View view) {
-        imgCentre.setImageDrawable(insectsList.get(4).getImage().getDrawable());
+        imgCentre.setImageResource(vocaList.get(4).getImageID());
         listIter = 4;
+    }
+
+    public void onImage5(View view) {
+        imgCentre.setImageResource(vocaList.get(5).getImageID());
+        listIter = 5;
     }
 
     // launch vocal recognition
     public void onStartClick(View view){
 
         if(view.getId() == R.id.imageCentre){
-            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), insectsList.get(3).getSoundString());
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), vocaList.get(listIter).getSoundString());
             mp.start();
-            try { Thread.sleep(3000); }
-            catch (InterruptedException ex) { android.util.Log.d("HA", ex.toString()); }
+            try {
+                Thread.sleep(3000);
+            }
+            catch (InterruptedException ex) {
+                android.util.Log.d("HA", ex.toString());
+            }
+
             getSpeechInput();
         }
     }
@@ -134,15 +138,15 @@ public class ExerciseActivity extends AppCompatActivity {
                 ArrayList<String> result = intent.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
                 // if it matchs with the word to repeat
-                if(result.get(0).equals(insectsList.get(listIter).getWord() ) ){
+                if(result.get(0).equals(vocaList.get(listIter).getWord() ) ){
 
-                    insectsList.get(listIter).setSuccess(1);
+                    vocaList.get(listIter).setSuccess(1);
                     Toast.makeText(ExerciseActivity.this,
                             "It is good",
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    insectsList.get(listIter).setSuccess(0);
+                    vocaList.get(listIter).setSuccess(0);
                     Toast.makeText(ExerciseActivity.this,
                             "It Iznogoude. You said : " + result.get(0),
                             Toast.LENGTH_SHORT).show();

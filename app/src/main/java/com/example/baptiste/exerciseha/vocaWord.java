@@ -21,8 +21,8 @@ public class vocaWord{
 
     // The vocabulary word contained
     private String p_word = "";
-    private ImageView p_img;
-    private int p_soundString;
+    private int p_imgID;
+    private int p_soundID;
 
     // state of the trials
     // -1 = no trials,    0 = tried but failed,    1 = success
@@ -34,18 +34,14 @@ public class vocaWord{
 
     /***** CONSTRUCTORS *******/
 
-    vocaWord(String m_word, ImageView m_img, int m_soundString){
+    vocaWord(String m_word, int m_imgID, int m_soundID){
         if(m_word != null)
             p_word = m_word;
         else
             p_word = "";
 
-        if(m_img != null)
-            p_img = m_img;
-
-        if(m_soundString != 0)
-            p_soundString = m_soundString;
-
+        p_imgID = m_imgID;
+        p_soundID = m_soundID;
         p_isSuccess = -1;
     }
 
@@ -57,11 +53,11 @@ public class vocaWord{
         p_word = m_word;
     }
 
-    ImageView getImage(){ return p_img; }
-    public void setImage(ImageView m_img){ p_img = m_img; }
+    int getImageID(){ return p_imgID; }
+    public void setImageID(int m_imgID){ p_imgID = m_imgID; }
 
-    int getSoundString(){ return p_soundString; }
-    public void setSoundString(int m_soundString){ p_soundString = m_soundString; }
+    int getSoundString(){ return p_soundID; }
+    public void setSoundString(int m_soundID){ p_soundID = m_soundID; }
 
     int getSuccess(){ return p_isSuccess; }
     public void setSuccess(int m_isSuccess){

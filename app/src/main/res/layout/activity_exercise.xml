@@ -4,87 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondengland2"
     tools:context="com.example.baptiste.exerciseha.ExerciseActivity">
 
 
+    <!-- BOTTOM ICONES -->
+
     <ImageView
         android:id="@+id/image0"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="50dp"
         android:onClick="onImage0"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/image1"
+        app:layout_constraintTop_toBottomOf="@+id/imageCentre"
+        app:layout_constraintVertical_bias="0.483"
         app:srcCompat="@drawable/leg" />
 
     <ImageView
         android:id="@+id/image1"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="0dp"
         android:onClick="onImage1"
-        app:layout_constraintBottom_toTopOf="@+id/image2"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image0"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintLeft_toRightOf="@+id/image0"
+        app:layout_constraintRight_toLeftOf="@+id/image2"
+        app:layout_constraintTop_toTopOf="@+id/image0"
+        app:layout_constraintBottom_toBottomOf="@+id/image0"
         app:srcCompat="@drawable/neck" />
 
     <ImageView
         android:id="@+id/image2"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="216dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="0dp"
         android:onClick="onImage2"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shoulder" />
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintLeft_toRightOf="@+id/image1"
+        app:layout_constraintRight_toLeftOf="@+id/image3"
+        app:layout_constraintTop_toTopOf="@+id/image0"
+        app:layout_constraintBottom_toBottomOf="@+id/image0"
+        app:srcCompat="@drawable/shoulders" />
 
     <ImageView
         android:id="@+id/image3"
-        android:layout_width="72dp"
-        android:layout_height="71dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="0dp"
         android:onClick="onImage3"
-        app:layout_constraintBottom_toTopOf="@+id/image4"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image2"
+        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintLeft_toRightOf="@+id/image2"
+        app:layout_constraintRight_toLeftOf="@+id/image4"
+        app:layout_constraintTop_toTopOf="@+id/image0"
+        app:layout_constraintBottom_toBottomOf="@+id/image0"
         app:srcCompat="@drawable/stomach" />
 
     <ImageView
         android:id="@+id/image4"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="420dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="0dp"
         android:onClick="onImage4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintLeft_toRightOf="@+id/image3"
+        app:layout_constraintRight_toLeftOf="@+id/image5"
+        app:layout_constraintTop_toTopOf="@+id/image0"
+        app:layout_constraintBottom_toBottomOf="@+id/image0"
         app:srcCompat="@drawable/toes" />
 
+    <ImageView
+        android:id="@+id/image5"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="0dp"
+        android:onClick="onImage5"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintLeft_toRightOf="@+id/image4"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image0"
+        app:layout_constraintBottom_toBottomOf="@+id/image0"
+        app:srcCompat="@drawable/elbow" />
+
+
+    <!-- CENTRAL PICTURE -->
 
     <ImageView
         android:id="@+id/imageCentre"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginRight="80dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="150dp"
         android:onClick="onStartClick"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/image0"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
-
+        app:layout_constraintVertical_bias="0.321" />
 
 
 </android.support.constraint.ConstraintLayout>
