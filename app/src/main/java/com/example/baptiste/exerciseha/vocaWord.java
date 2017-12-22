@@ -4,6 +4,7 @@ package com.example.baptiste.exerciseha;
  * Created by tangu on 14/12/2017.
  */
 
+import android.net.Uri;
 import android.widget.ImageView;
 
 /**
@@ -20,18 +21,20 @@ public class vocaWord{
 
     // The vocabulary word contained
     private String p_word = "";
+    private ImageView p_img;
+    private int p_soundString;
 
     // state of the trials
     // -1 = no trials,    0 = tried but failed,    1 = success
     private int p_isSuccess = -1;
 
-    private ImageView p_img;
+
 
 
 
     /***** CONSTRUCTORS *******/
 
-    vocaWord(String m_word, ImageView m_img){
+    vocaWord(String m_word, ImageView m_img, int m_soundString){
         if(m_word != null)
             p_word = m_word;
         else
@@ -39,6 +42,9 @@ public class vocaWord{
 
         if(m_img != null)
             p_img = m_img;
+
+        if(m_soundString != 0)
+            p_soundString = m_soundString;
 
         p_isSuccess = -1;
     }
@@ -53,6 +59,9 @@ public class vocaWord{
 
     ImageView getImage(){ return p_img; }
     public void setImage(ImageView m_img){ p_img = m_img; }
+
+    int getSoundString(){ return p_soundString; }
+    public void setSoundString(int m_soundString){ p_soundString = m_soundString; }
 
     int getSuccess(){ return p_isSuccess; }
     public void setSuccess(int m_isSuccess){

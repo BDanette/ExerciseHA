@@ -2,6 +2,8 @@ package com.example.baptiste.exerciseha;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
@@ -21,17 +23,21 @@ public class ExerciseActivity extends AppCompatActivity {
     private ImageView img3;
     private ImageView img4;
     private ImageView imgCentre;
+
+
     public int listIter = 0;
     public ArrayList<vocaWord> insectsList;
     {
         insectsList = new ArrayList<vocaWord>() {{
-            add(new vocaWord("arm", img0));
-            add(new vocaWord("finger", img1));
-            add(new vocaWord("foot", img2));
-            add(new vocaWord("hand", img3));
-            add(new vocaWord("head", img4));
+            add(new vocaWord("leg", img0, R.raw.audio_leg));
+            add(new vocaWord("neck", img1, R.raw.audio_neck));
+            add(new vocaWord("shoulder", img2, R.raw.audio_shoulders));
+            add(new vocaWord("stomach", img3, R.raw.audio_stomach));
+            add(new vocaWord("toes", img4, R.raw.audio_toes));
         }};
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +93,10 @@ public class ExerciseActivity extends AppCompatActivity {
     public void onStartClick(View view){
 
         if(view.getId() == R.id.imageCentre){
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), insectsList.get(3).getSoundString());
+            mp.start();
+            try { Thread.sleep(3000); }
+            catch (InterruptedException ex) { android.util.Log.d("HA", ex.toString()); }
             getSpeechInput();
         }
     }
@@ -134,7 +144,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 else {
                     insectsList.get(listIter).setSuccess(0);
                     Toast.makeText(ExerciseActivity.this,
-                            "It Iznogoude",
+                            "It Iznogoude. You said : " + result.get(0),
                             Toast.LENGTH_SHORT).show();
                 }
             }
