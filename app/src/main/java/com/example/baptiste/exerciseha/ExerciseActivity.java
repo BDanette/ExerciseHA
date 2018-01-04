@@ -3,7 +3,6 @@ package com.example.baptiste.exerciseha;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,14 +16,10 @@ import java.util.ArrayList;
 
 public class ExerciseActivity extends AppCompatActivity {
 
-    private ImageView img0;
-    private ImageView img1;
-    private ImageView img2;
-    private ImageView img3;
-    private ImageView img4;
-    private ImageView img5;
+
     private ImageView imgCentre;
 
+    public ArrayList<ImageView> iconesList;
 
     public int listIter = 0;
     public ArrayList<vocaWord> vocaList;
@@ -32,7 +27,7 @@ public class ExerciseActivity extends AppCompatActivity {
         vocaList = new ArrayList<vocaWord>() {{
             add(new vocaWord("leg", R.drawable.leg, R.raw.audio_leg));
             add(new vocaWord("neck", R.drawable.neck, R.raw.audio_neck));
-            add(new vocaWord("shoulder", R.drawable.shoulders, R.raw.audio_shoulders));
+            add(new vocaWord("shoulders", R.drawable.shoulders, R.raw.audio_shoulders));
             add(new vocaWord("stomach", R.drawable.stomach, R.raw.audio_stomach));
             add(new vocaWord("toes", R.drawable.toes, R.raw.audio_toes));
             add(new vocaWord("elbow", R.drawable.elbow, R.raw.audio_elbow));
@@ -47,13 +42,17 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
-        img0 = findViewById(R.id.image0);
-        img1 = findViewById(R.id.image1);
-        img2 = findViewById(R.id.image2);
-        img3 = findViewById(R.id.image3);
-        img4 = findViewById(R.id.image4);
-        img5 = findViewById(R.id.image5);
         imgCentre = findViewById(R.id.imageCentre);
+
+        iconesList = new ArrayList<ImageView>() {{
+
+            add((ImageView) findViewById(R.id.image0));
+            add((ImageView) findViewById(R.id.image1));
+            add((ImageView) findViewById(R.id.image2));
+            add((ImageView) findViewById(R.id.image3));
+            add((ImageView) findViewById(R.id.image4));
+            add((ImageView) findViewById(R.id.image5));
+        }};
     }
 
 
@@ -61,31 +60,37 @@ public class ExerciseActivity extends AppCompatActivity {
     public void onImage0(View view) {
         imgCentre.setImageResource(vocaList.get(0).getImageID());
         listIter = 0;
+        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
     public void onImage1(View view) {
         imgCentre.setImageResource(vocaList.get(1).getImageID());
         listIter = 1;
+        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
     public void onImage2(View view) {
         imgCentre.setImageResource(vocaList.get(2).getImageID());
         listIter = 2;
+        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
     public void onImage3(View view) {
         imgCentre.setImageResource(vocaList.get(3).getImageID());
         listIter = 3;
+        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
     public void onImage4(View view) {
         imgCentre.setImageResource(vocaList.get(4).getImageID());
         listIter = 4;
+        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
     public void onImage5(View view) {
         imgCentre.setImageResource(vocaList.get(5).getImageID());
         listIter = 5;
+        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
     // launch vocal recognition

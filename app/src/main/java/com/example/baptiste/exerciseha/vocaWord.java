@@ -4,8 +4,6 @@ package com.example.baptiste.exerciseha;
  * Created by tangu on 14/12/2017.
  */
 
-import android.net.Uri;
-import android.widget.ImageView;
 
 /**
  * "vocaWord"
@@ -60,7 +58,7 @@ public class vocaWord{
     public void setSoundString(int m_soundID){ p_soundID = m_soundID; }
 
     int getSuccess(){ return p_isSuccess; }
-    public void setSuccess(int m_isSuccess){
+    void setSuccess(int m_isSuccess){
         p_isSuccess = m_isSuccess;
     }
 

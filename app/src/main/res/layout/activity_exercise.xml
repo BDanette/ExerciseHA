@@ -22,7 +22,7 @@
         app:layout_constraintRight_toLeftOf="@+id/image1"
         app:layout_constraintTop_toBottomOf="@+id/imageCentre"
         app:layout_constraintVertical_bias="0.483"
-        app:srcCompat="@drawable/leg" />
+        app:srcCompat="@drawable/shad_leg" />
 
     <ImageView
         android:id="@+id/image1"
@@ -35,7 +35,7 @@
         app:layout_constraintRight_toLeftOf="@+id/image2"
         app:layout_constraintTop_toTopOf="@+id/image0"
         app:layout_constraintBottom_toBottomOf="@+id/image0"
-        app:srcCompat="@drawable/neck" />
+        app:srcCompat="@drawable/shad_neck" />
 
     <ImageView
         android:id="@+id/image2"
@@ -48,7 +48,7 @@
         app:layout_constraintRight_toLeftOf="@+id/image3"
         app:layout_constraintTop_toTopOf="@+id/image0"
         app:layout_constraintBottom_toBottomOf="@+id/image0"
-        app:srcCompat="@drawable/shoulders" />
+        app:srcCompat="@drawable/shad_shoulders" />
 
     <ImageView
         android:id="@+id/image3"
@@ -61,7 +61,7 @@
         app:layout_constraintRight_toLeftOf="@+id/image4"
         app:layout_constraintTop_toTopOf="@+id/image0"
         app:layout_constraintBottom_toBottomOf="@+id/image0"
-        app:srcCompat="@drawable/stomach" />
+        app:srcCompat="@drawable/shad_stomach" />
 
     <ImageView
         android:id="@+id/image4"
@@ -74,7 +74,7 @@
         app:layout_constraintRight_toLeftOf="@+id/image5"
         app:layout_constraintTop_toTopOf="@+id/image0"
         app:layout_constraintBottom_toBottomOf="@+id/image0"
-        app:srcCompat="@drawable/toes" />
+        app:srcCompat="@drawable/shad_toes" />
 
     <ImageView
         android:id="@+id/image5"
@@ -87,7 +87,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image0"
         app:layout_constraintBottom_toBottomOf="@+id/image0"
-        app:srcCompat="@drawable/elbow" />
+        app:srcCompat="@drawable/shad_elbow" />
 
 
     <!-- CENTRAL PICTURE -->
