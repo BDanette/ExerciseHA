@@ -57,39 +57,9 @@ public class ExerciseActivity extends AppCompatActivity {
 
 
 
-    public void onImage0(View view) {
-        imgCentre.setImageResource(vocaList.get(0).getImageID());
-        listIter = 0;
-        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
-    }
-
-    public void onImage1(View view) {
-        imgCentre.setImageResource(vocaList.get(1).getImageID());
-        listIter = 1;
-        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
-    }
-
-    public void onImage2(View view) {
-        imgCentre.setImageResource(vocaList.get(2).getImageID());
-        listIter = 2;
-        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
-    }
-
-    public void onImage3(View view) {
-        imgCentre.setImageResource(vocaList.get(3).getImageID());
-        listIter = 3;
-        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
-    }
-
-    public void onImage4(View view) {
-        imgCentre.setImageResource(vocaList.get(4).getImageID());
-        listIter = 4;
-        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
-    }
-
-    public void onImage5(View view) {
-        imgCentre.setImageResource(vocaList.get(5).getImageID());
-        listIter = 5;
+    public void onImageX(View view) {
+        listIter = Integer.parseInt(view.getTag().toString());
+        imgCentre.setImageResource(vocaList.get(listIter).getImageID());
         iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
