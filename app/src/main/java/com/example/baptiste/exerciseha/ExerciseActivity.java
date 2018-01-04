@@ -2,6 +2,7 @@ package com.example.baptiste.exerciseha;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -25,12 +26,18 @@ public class ExerciseActivity extends AppCompatActivity {
     public ArrayList<vocaWord> vocaList;
     {
         vocaList = new ArrayList<vocaWord>() {{
-            add(new vocaWord("leg", R.drawable.leg, R.raw.audio_leg));
-            add(new vocaWord("neck", R.drawable.neck, R.raw.audio_neck));
-            add(new vocaWord("shoulders", R.drawable.shoulders, R.raw.audio_shoulders));
-            add(new vocaWord("stomach", R.drawable.stomach, R.raw.audio_stomach));
-            add(new vocaWord("toes", R.drawable.toes, R.raw.audio_toes));
-            add(new vocaWord("elbow", R.drawable.elbow, R.raw.audio_elbow));
+            add(new vocaWord("leg", R.drawable.leg, R.drawable.shad_leg,
+                    R.id.image0, R.raw.audio_leg));
+            add(new vocaWord("neck", R.drawable.neck, R.drawable.shad_neck,
+                    R.id.image1, R.raw.audio_neck));
+            add(new vocaWord("shoulders", R.drawable.shoulders, R.drawable.shad_shoulders,
+                    R.id.image2, R.raw.audio_shoulders));
+            add(new vocaWord("stomach", R.drawable.stomach, R.drawable.shad_stomach,
+                    R.id.image3, R.raw.audio_stomach));
+            add(new vocaWord("toes", R.drawable.toes, R.drawable.shad_toes,
+                    R.id.image4, R.raw.audio_toes));
+            add(new vocaWord("elbow", R.drawable.elbow, R.drawable.shad_elbow,
+                    R.id.image5, R.raw.audio_elbow));
 
         }};
     }
@@ -44,15 +51,11 @@ public class ExerciseActivity extends AppCompatActivity {
 
         imgCentre = findViewById(R.id.imageCentre);
 
-        iconesList = new ArrayList<ImageView>() {{
+        iconesList = new ArrayList<>();
+        for(int i=0 ; i<vocaList.size() ; i++){
+            iconesList.add((ImageView) findViewById(vocaList.get(i).getImageViewID()));
+        }
 
-            add((ImageView) findViewById(R.id.image0));
-            add((ImageView) findViewById(R.id.image1));
-            add((ImageView) findViewById(R.id.image2));
-            add((ImageView) findViewById(R.id.image3));
-            add((ImageView) findViewById(R.id.image4));
-            add((ImageView) findViewById(R.id.image5));
-        }};
     }
 
 
@@ -63,22 +66,62 @@ public class ExerciseActivity extends AppCompatActivity {
         iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
+
     // launch vocal recognition
     public void onStartClick(View view){
 
-        if(view.getId() == R.id.imageCentre){
-            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), vocaList.get(listIter).getSoundString());
-            mp.start();
-            try {
-                Thread.sleep(3000);
-            }
-            catch (InterruptedException ex) {
-                android.util.Log.d("HA", ex.toString());
-            }
+        if(view.getId() == R.id.imageCentre) {
 
-            getSpeechInput();
+            int vocaTrial = vocaList.get(listIter).getVocaTrial();
+
+            // if less than five tries and no success ...
+            // ... then try !!
+            if (vocaTrial < 5 && vocaList.get(listIter).getSuccess() < 1) {
+
+                // play word sound
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), vocaList.get(listIter).getSoundString());
+                mp.start();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException ex) {
+                    android.util.Log.d("HA", ex.toString());
+                }
+
+                // get user response
+                getSpeechInput();
+                vocaList.get(listIter).setVocaTrial(vocaTrial +1);
+            }
+            // if more than 5 tries but no success ...
+            // ... then set icone to RED and go on to the next picture
+            else if(vocaTrial >= 5 && vocaList.get(listIter).getSuccess() < 1){
+
+                Toast.makeText(ExerciseActivity.this,
+                        "Sorry impossible to try more than 5 times",
+                        Toast.LENGTH_SHORT).show();
+
+                // set icone to shadow icone in RED
+                iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageShadID());
+                iconesList.get(listIter).setColorFilter(Color.RED);
+
+                // go on to the next picture
+                listIter = (listIter +1)%6;
+                onImageX(findViewById(vocaList.get(listIter).getImageViewID()));
+            }
+            // if already succussful ...
+            // ... then go on to the next picture
+            else{
+
+                Toast.makeText(ExerciseActivity.this,
+                        "already passed",
+                        Toast.LENGTH_SHORT).show();
+                // go on to the next picture
+                listIter = (listIter +1)%6;
+                onImageX(findViewById(vocaList.get(listIter).getImageViewID()));
+            }
         }
     }
+
+
 
     public void getSpeechInput(){
 
@@ -119,6 +162,9 @@ public class ExerciseActivity extends AppCompatActivity {
                     Toast.makeText(ExerciseActivity.this,
                             "It is good",
                             Toast.LENGTH_SHORT).show();
+
+                    iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageShadID());
+                    iconesList.get(listIter).setColorFilter(Color.WHITE);
                 }
                 else {
                     vocaList.get(listIter).setSuccess(0);

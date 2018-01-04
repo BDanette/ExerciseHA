@@ -10,6 +10,7 @@
 
     <!-- BOTTOM ICONES -->
 
+    <!-- android:tint="#FFFFFF" -->
     <ImageView
         android:id="@+id/image0"
         android:layout_width="52dp"
