@@ -23,6 +23,8 @@ public class ExerciseActivity extends AppCompatActivity {
     public ArrayList<ImageView> iconesList;
 
     public int listIter = 0;
+    public int trialNumber = 5; // 5 for exercise       2 for boss exercise
+
     public ArrayList<vocaWord> vocaList;
     {
         vocaList = new ArrayList<vocaWord>() {{
@@ -39,6 +41,19 @@ public class ExerciseActivity extends AppCompatActivity {
             add(new vocaWord("elbow", R.drawable.elbow, R.drawable.shad_elbow,
                     R.id.image5, R.raw.audio_elbow));
 
+            // add these for boss exercise
+            /*add(new vocaWord("back", R.drawable.back, R.drawable.shad_back,
+                    R.id.image6, R.raw.audio_back));
+            add(new vocaWord("buttocks", R.drawable.buttocks, R.drawable.shad_buttocks,
+                    R.id.image7, R.raw.audio_buttocks));
+            add(new vocaWord("chest", R.drawable.chest, R.drawable.shad_chest,
+                    R.id.image8, R.raw.audio_chest));
+            add(new vocaWord("finger", R.drawable.finger, R.drawable.shad_finger,
+                    R.id.image9, R.raw.audio_finger));
+            add(new vocaWord("head", R.drawable.head, R.drawable.shad_head,
+                    R.id.image10, R.raw.audio_head));
+            add(new vocaWord("knee", R.drawable.knee, R.drawable.shad_knee,
+                    R.id.image11, R.raw.audio_knee));*/
         }};
     }
 
@@ -78,7 +93,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
             // if less than five tries and no success ...
             // ... then try !!
-            if (vocaTrial < 5 && vocaList.get(listIter).getSuccess() < 1) {
+            if (vocaTrial < trialNumber && vocaList.get(listIter).getSuccess() < 1) {
 
                 // play word sound
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), vocaList.get(listIter).getSoundString());
@@ -95,7 +110,7 @@ public class ExerciseActivity extends AppCompatActivity {
             }
             // if more than 5 tries but no success ...
             // ... then set icone to RED and go on to the next picture
-            else if(vocaTrial >= 5 && vocaList.get(listIter).getSuccess() < 1){
+            else if(vocaTrial >= trialNumber && vocaList.get(listIter).getSuccess() < 1){
 
                 Toast.makeText(ExerciseActivity.this,
                         "Sorry impossible to try more than 5 times",
@@ -106,7 +121,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 iconesList.get(listIter).setColorFilter(Color.RED);
 
                 // go on to the next picture
-                listIter = (listIter +1)%6;
+                listIter = (listIter +1)%vocaList.size();
                 onImageX(findViewById(vocaList.get(listIter).getImageViewID()));
             }
             // if already succussful ...
