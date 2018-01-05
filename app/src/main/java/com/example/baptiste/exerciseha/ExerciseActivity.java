@@ -63,14 +63,16 @@ public class ExerciseActivity extends AppCompatActivity {
     public void onImageX(View view) {
         listIter = Integer.parseInt(view.getTag().toString());
         imgCentre.setImageResource(vocaList.get(listIter).getImageID());
-        iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
+        imgCentre.setTag("ok");
+        if(vocaList.get(listIter).getSuccess() < 1)
+            iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageID());
     }
 
 
     // launch vocal recognition
     public void onStartClick(View view){
 
-        if(view.getId() == R.id.imageCentre) {
+        if(view.getId() == R.id.imageCentre && imgCentre.getTag().toString().equals("ok")) {
 
             int vocaTrial = vocaList.get(listIter).getVocaTrial();
 
