@@ -10,9 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 
+import static com.example.baptiste.exerciseha.ThematicActivity.EXTRA_ACTID;
 
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -22,11 +24,15 @@ public class ExerciseActivity extends AppCompatActivity {
 
     public ArrayList<ImageView> iconesList;
 
-    public int listIter = 0;
-    public int trialNumber = 5; // 5 for exercise       2 for boss exercise
+    private int listIter = 0;
+    private int trialNumber; // 5 for exercise       2 for boss exercise
 
-    public ArrayList<vocaWord> vocaList;
-    {
+    private int exID;
+    //private int exID = R.layout.activity_exercise;
+    // private int exID = R.layout.activity_exboss;
+
+    private ArrayList<vocaWord> vocaList;
+    /*{
         vocaList = new ArrayList<vocaWord>() {{
             add(new vocaWord("leg", R.drawable.leg, R.drawable.shad_leg,
                     R.id.image0, R.raw.audio_leg));
@@ -42,7 +48,7 @@ public class ExerciseActivity extends AppCompatActivity {
                     R.id.image5, R.raw.audio_elbow));
 
             // add these for boss exercise
-            /*add(new vocaWord("back", R.drawable.back, R.drawable.shad_back,
+            *//*add(new vocaWord("back", R.drawable.back, R.drawable.shad_back,
                     R.id.image6, R.raw.audio_back));
             add(new vocaWord("buttocks", R.drawable.buttocks, R.drawable.shad_buttocks,
                     R.id.image7, R.raw.audio_buttocks));
@@ -53,16 +59,25 @@ public class ExerciseActivity extends AppCompatActivity {
             add(new vocaWord("head", R.drawable.head, R.drawable.shad_head,
                     R.id.image10, R.raw.audio_head));
             add(new vocaWord("knee", R.drawable.knee, R.drawable.shad_knee,
-                    R.id.image11, R.raw.audio_knee));*/
+                    R.id.image11, R.raw.audio_knee));*//*
         }};
-    }
+    }*/
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise);
+
+        // get back data from thematic activity
+        Intent intent = getIntent();
+        exID = intent.getIntExtra(ThematicActivity.EXTRA_ACTID, 0);
+        trialNumber = intent.getIntExtra(ThematicActivity.EXTRA_TRIAL, 0);
+        //exID = Integer.parseInt(intent.getStringExtra(ThematicActivity.EXTRA_ACTID));
+        //trialNumber = Integer.parseInt(intent.getStringExtra(ThematicActivity.EXTRA_TRIAL));
+        vocaList = intent.getParcelableArrayListExtra(ThematicActivity.EXTRA_VOCALIST);
+
+        setContentView(exID);
 
         imgCentre = findViewById(R.id.imageCentre);
 
@@ -72,6 +87,23 @@ public class ExerciseActivity extends AppCompatActivity {
         }
 
     }
+
+    // new constructor
+    /*protected void onCreate(Bundle savedInstanceState, int m_exID, ArrayList<vocaWord> m_vocaList, int m_trialNumber) {
+        super.onCreate(savedInstanceState);
+        this.exID = m_exID;
+        setContentView(m_exID);
+
+        this.vocaList = m_vocaList;
+        this.trialNumber = m_trialNumber;
+        this.imgCentre = findViewById(R.id.imageCentre);
+
+        this.iconesList = new ArrayList<>();
+        for(int i=0 ; i<vocaList.size() ; i++){
+            iconesList.add((ImageView) findViewById(vocaList.get(i).getImageViewID()));
+        }
+
+    }*/
 
 
 
@@ -96,7 +128,7 @@ public class ExerciseActivity extends AppCompatActivity {
             if (vocaTrial < trialNumber && vocaList.get(listIter).getSuccess() < 1) {
 
                 // play word sound
-                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), vocaList.get(listIter).getSoundString());
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), vocaList.get(listIter).getSoundID());
                 mp.start();
                 try {
                     Thread.sleep(3000);

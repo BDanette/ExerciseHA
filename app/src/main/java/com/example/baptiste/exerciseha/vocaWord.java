@@ -5,6 +5,12 @@ package com.example.baptiste.exerciseha;
  */
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+
+import static android.content.ContentValues.TAG;
+
 /**
  * "vocaWord"
  *
@@ -13,7 +19,7 @@ package com.example.baptiste.exerciseha;
  * and the state of the trials (well repeated or not...).
  *
  */
-public class vocaWord{
+public class vocaWord implements Parcelable{
 
     /***** PARAMETERS *******/
 
@@ -29,24 +35,65 @@ public class vocaWord{
     // -1 = no trials,    0 = tried but failed,    1 = success
     private int p_isSuccess = -1;
 
+    // weird variable to help Parcelable contents
+    public static final Parcelable.Creator CREATOR = new Creator() {
+
+        public Object createFromParcel(Parcel source) {
+            return new vocaWord(source);
+        }
+
+        public Object[] newArray(int size) {
+            return new vocaWord[size];
+        }
+    };
 
 
+    /***** PARCELABLE *******/
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        Log.v(TAG, "writeToParcel..."+ flags);
+        dest.writeString(p_word);
+        dest.writeInt(p_imgID);
+        dest.writeInt(p_imgShadID);
+        dest.writeInt(p_imgViewID);
+        dest.writeInt(p_soundID);
+        dest.writeInt(p_trial);
+        dest.writeInt(p_isSuccess);
+
+    }
 
 
     /***** CONSTRUCTORS *******/
 
     vocaWord(String m_word, int m_imgID, int m_imgShadID, int m_imgViewID, int m_soundID){
         if(m_word != null)
-            this.p_word = m_word;
+            this.setWord(m_word);
         else
-            this.p_word = "";
+            this.setWord("");
 
-        this.p_imgID = m_imgID;
-        this.p_imgShadID = m_imgShadID;
-        this.p_imgViewID = m_imgViewID;
-        this.p_soundID = m_soundID;
-        this.p_isSuccess = -1;
-        this.p_trial = 0;
+        this.setImageID(m_imgID);
+        this.setImageShadID(m_imgShadID);
+        this.setImageViewID(m_imgViewID);
+        this.setSoundID(m_soundID);
+        this.setSuccess(-1);
+        this.setVocaTrial(0);
+    }
+
+    vocaWord(Parcel source){
+        Log.v(TAG, "ParcelData(Parcel source): time to put back parcel data");
+        p_word = source.readString();
+        p_imgID = source.readInt();
+        p_imgShadID = source.readInt();
+        p_imgViewID = source.readInt();
+        p_soundID = source.readInt();
+        p_trial = source.readInt();
+        p_isSuccess = source.readInt();
     }
 
 
@@ -72,8 +119,8 @@ public class vocaWord{
         this.p_imgID = m_imgID;
     }
 
-    int getSoundString(){ return this.p_soundID; }
-    public void setSoundString(int m_soundID){
+    int getSoundID(){ return this.p_soundID; }
+    public void setSoundID(int m_soundID){
         this.p_soundID = m_soundID;
     }
 
@@ -106,6 +153,5 @@ public class vocaWord{
         }
         return "ERROR";
     }
-
 
 }
