@@ -31,9 +31,11 @@ public class vocaWord implements Parcelable{
     private int p_soundID;
     private int p_trial;
 
-    // state of the trials
     // -1 = no trials,    0 = tried but failed,    1 = success
     private int p_isSuccess = -1;
+
+    // difficulty levels in a list (1, 2 & 3)
+    private int p_lvl;
 
     // weird variable to help Parcelable contents
     public static final Parcelable.Creator CREATOR = new Creator() {
@@ -65,13 +67,14 @@ public class vocaWord implements Parcelable{
         dest.writeInt(p_soundID);
         dest.writeInt(p_trial);
         dest.writeInt(p_isSuccess);
+        dest.writeInt(p_lvl);
 
     }
 
 
     /***** CONSTRUCTORS *******/
 
-    vocaWord(String m_word, int m_imgID, int m_imgShadID, int m_imgViewID, int m_soundID){
+    vocaWord(String m_word, int m_imgID, int m_imgShadID, int m_imgViewID, int m_soundID, int m_lvl){
         if(m_word != null)
             this.setWord(m_word);
         else
@@ -83,6 +86,7 @@ public class vocaWord implements Parcelable{
         this.setSoundID(m_soundID);
         this.setSuccess(-1);
         this.setVocaTrial(0);
+        this.setLvl(m_lvl);
     }
 
     vocaWord(Parcel source){
@@ -94,6 +98,7 @@ public class vocaWord implements Parcelable{
         p_soundID = source.readInt();
         p_trial = source.readInt();
         p_isSuccess = source.readInt();
+        p_lvl = source.readInt();
     }
 
 
@@ -133,6 +138,9 @@ public class vocaWord implements Parcelable{
     void setVocaTrial(int m_trial){
         this.p_trial = m_trial;
     }
+
+    int getLvl() { return this.p_lvl; }
+    void setLvl(int m_lvl) { this.p_lvl = m_lvl; }
 
 
     /***** OTHER METHODS *******/

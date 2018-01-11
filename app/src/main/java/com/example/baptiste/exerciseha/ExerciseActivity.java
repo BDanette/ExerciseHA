@@ -10,11 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.os.Parcelable;
 
 import java.util.ArrayList;
 
 import static com.example.baptiste.exerciseha.ThematicActivity.EXTRA_ACTID;
+import static com.example.baptiste.exerciseha.ThematicActivity.EXTRA_TRIAL;
+import static com.example.baptiste.exerciseha.ThematicActivity.EXTRA_VOCALIST;
 
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -29,39 +30,9 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private int exID;
     //private int exID = R.layout.activity_exercise;
-    // private int exID = R.layout.activity_exboss;
+    //private int exID = R.layout.activity_exboss;
 
     private ArrayList<vocaWord> vocaList;
-    /*{
-        vocaList = new ArrayList<vocaWord>() {{
-            add(new vocaWord("leg", R.drawable.leg, R.drawable.shad_leg,
-                    R.id.image0, R.raw.audio_leg));
-            add(new vocaWord("neck", R.drawable.neck, R.drawable.shad_neck,
-                    R.id.image1, R.raw.audio_neck));
-            add(new vocaWord("shoulders", R.drawable.shoulders, R.drawable.shad_shoulders,
-                    R.id.image2, R.raw.audio_shoulders));
-            add(new vocaWord("stomach", R.drawable.stomach, R.drawable.shad_stomach,
-                    R.id.image3, R.raw.audio_stomach));
-            add(new vocaWord("toes", R.drawable.toes, R.drawable.shad_toes,
-                    R.id.image4, R.raw.audio_toes));
-            add(new vocaWord("elbow", R.drawable.elbow, R.drawable.shad_elbow,
-                    R.id.image5, R.raw.audio_elbow));
-
-            // add these for boss exercise
-            *//*add(new vocaWord("back", R.drawable.back, R.drawable.shad_back,
-                    R.id.image6, R.raw.audio_back));
-            add(new vocaWord("buttocks", R.drawable.buttocks, R.drawable.shad_buttocks,
-                    R.id.image7, R.raw.audio_buttocks));
-            add(new vocaWord("chest", R.drawable.chest, R.drawable.shad_chest,
-                    R.id.image8, R.raw.audio_chest));
-            add(new vocaWord("finger", R.drawable.finger, R.drawable.shad_finger,
-                    R.id.image9, R.raw.audio_finger));
-            add(new vocaWord("head", R.drawable.head, R.drawable.shad_head,
-                    R.id.image10, R.raw.audio_head));
-            add(new vocaWord("knee", R.drawable.knee, R.drawable.shad_knee,
-                    R.id.image11, R.raw.audio_knee));*//*
-        }};
-    }*/
 
 
 
@@ -71,11 +42,9 @@ public class ExerciseActivity extends AppCompatActivity {
 
         // get back data from thematic activity
         Intent intent = getIntent();
-        exID = intent.getIntExtra(ThematicActivity.EXTRA_ACTID, 0);
-        trialNumber = intent.getIntExtra(ThematicActivity.EXTRA_TRIAL, 0);
-        //exID = Integer.parseInt(intent.getStringExtra(ThematicActivity.EXTRA_ACTID));
-        //trialNumber = Integer.parseInt(intent.getStringExtra(ThematicActivity.EXTRA_TRIAL));
-        vocaList = intent.getParcelableArrayListExtra(ThematicActivity.EXTRA_VOCALIST);
+        exID = intent.getIntExtra(EXTRA_ACTID, 0);
+        trialNumber = intent.getIntExtra(EXTRA_TRIAL, 0);
+        vocaList = intent.getParcelableArrayListExtra(EXTRA_VOCALIST);
 
         setContentView(exID);
 
@@ -87,24 +56,6 @@ public class ExerciseActivity extends AppCompatActivity {
         }
 
     }
-
-    // new constructor
-    /*protected void onCreate(Bundle savedInstanceState, int m_exID, ArrayList<vocaWord> m_vocaList, int m_trialNumber) {
-        super.onCreate(savedInstanceState);
-        this.exID = m_exID;
-        setContentView(m_exID);
-
-        this.vocaList = m_vocaList;
-        this.trialNumber = m_trialNumber;
-        this.imgCentre = findViewById(R.id.imageCentre);
-
-        this.iconesList = new ArrayList<>();
-        for(int i=0 ; i<vocaList.size() ; i++){
-            iconesList.add((ImageView) findViewById(vocaList.get(i).getImageViewID()));
-        }
-
-    }*/
-
 
 
     public void onImageX(View view) {
@@ -145,7 +96,7 @@ public class ExerciseActivity extends AppCompatActivity {
             else if(vocaTrial >= trialNumber && vocaList.get(listIter).getSuccess() < 1){
 
                 Toast.makeText(ExerciseActivity.this,
-                        "Sorry impossible to try more than 5 times",
+                        "Sorry impossible to try more than " + trialNumber + " times",
                         Toast.LENGTH_SHORT).show();
 
                 // set icone to shadow icone in RED
@@ -177,7 +128,7 @@ public class ExerciseActivity extends AppCompatActivity {
         // init the vocal recognition
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-GB"); // "en-GB" "en-AU" Locale.getDefault()
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something !");
 
         // start the vocal recognition
