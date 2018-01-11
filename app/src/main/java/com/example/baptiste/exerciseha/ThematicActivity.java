@@ -85,7 +85,8 @@ public class ThematicActivity extends AppCompatActivity {
 
     }
 
-    // TODO manage exercise 3 list when less than 18 words in vocaList
+
+
     public void onExerciseX(View view){
 
         if(vocaList.size() > 18){
@@ -96,8 +97,8 @@ public class ThematicActivity extends AppCompatActivity {
             return;
         }
 
-        int iterTag = Integer.parseInt(view.getTag().toString());
-        if(iterTag != 0 || iterTag != 1 || iterTag != 2){
+        int exTag = Integer.parseInt(view.getTag().toString());
+        if(exTag != 0 && exTag != 1 && exTag != 2){
             Toast.makeText(ThematicActivity.this,
                     "You are not trying to open an exercise",
                     Toast.LENGTH_SHORT).show();
@@ -108,16 +109,22 @@ public class ThematicActivity extends AppCompatActivity {
 
         ArrayList<vocaWord> tmpVocaList = new ArrayList<>();
 
-        for(int i=0 ; i<6 ; i++){
-
-            tmpVocaList.add(new vocaWord(vocaList.get(6*iterTag + i).getWord(),
-                    vocaList.get(6*iterTag + i).getImageID(),
-                    vocaList.get(6*iterTag + i).getImageShadID(),
-                    buttonIDList[i],
-                    vocaList.get(6*iterTag + i).getSoundID(),
-                    vocaList.get(6*iterTag + i).getLvl() ));
+        int iter = 6*exTag;
+        int max = iter + 6;
+        int j = 0;
+        if(exTag == 2){
+            max = vocaList.size();
+            iter = max - 6;
         }
+        for (int i = iter ; i < max; i++, j++) {
 
+            tmpVocaList.add(new vocaWord(vocaList.get(i).getWord(),
+                    vocaList.get(i).getImageID(),
+                    vocaList.get(i).getImageShadID(),
+                    buttonIDList[j],
+                    vocaList.get(i).getSoundID(),
+                    vocaList.get(i).getLvl()));
+        }
 
         // send data to exercise activity
         Intent intent = new Intent(ThematicActivity.this, ExerciseActivity.class);
@@ -127,11 +134,13 @@ public class ThematicActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     public void onBoss(View view){
 
-        String nameTag = view.getTag().toString();
+        String bossTag = view.getTag().toString();
 
-        if(!nameTag.equals("boss")){
+        if(!bossTag.equals("boss")){
             Toast.makeText(ThematicActivity.this,
                     "You are not trying to open a boss",
                     Toast.LENGTH_SHORT).show();

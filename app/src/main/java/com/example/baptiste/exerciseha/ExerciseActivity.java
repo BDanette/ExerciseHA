@@ -53,6 +53,7 @@ public class ExerciseActivity extends AppCompatActivity {
         iconesList = new ArrayList<>();
         for(int i=0 ; i<vocaList.size() ; i++){
             iconesList.add((ImageView) findViewById(vocaList.get(i).getImageViewID()));
+            iconesList.get(i).setImageResource(vocaList.get(i).getImageShadID());
         }
 
     }
