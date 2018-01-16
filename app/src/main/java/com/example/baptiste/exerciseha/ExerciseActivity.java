@@ -165,7 +165,7 @@ public class ExerciseActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     iconesList.get(listIter).setImageResource(vocaList.get(listIter).getImageShadID());
-                    iconesList.get(listIter).setColorFilter(Color.WHITE);
+                    iconesList.get(listIter).setColorFilter(Color.GREEN);
                 }
                 else {
                     vocaList.get(listIter).setSuccess(0);
