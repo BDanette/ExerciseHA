@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ExerciseHA.iml" filepath="$PROJECT_DIR$/.idea/ExerciseHA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExerciseHA.iml" filepath="$PROJECT_DIR$/ExerciseHA.iml" />
+      <module fileurl="file://E:\ExerciseHA\.idea\ExerciseHA.iml" filepath="E:\ExerciseHA\.idea\ExerciseHA.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\ExerciseHA\app\app.iml" filepath="E:\ExerciseHA\app\app.iml" />
     </modules>
   </component>
 </project>
